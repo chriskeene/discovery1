@@ -6,19 +6,20 @@
  */
 
 $task = $_GET["task"];
+echo $task;
 
 switch ($task) {
     case "search":
-        include 'one.php';
+        include 'search.php';
         break;
-    case "two":
-        include 'yup';
+    case "pubdetails":
+        include 'two.php';
         break;
     default:
         echo "default";
-        include "searchform";
+        //include "welcometext.php";
+        include "searchform.php";
 }
-$_GET["search"]
 
 
 
