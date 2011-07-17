@@ -11,10 +11,14 @@ ini_set('display_errors',1);
 
 include_once 'Sparqlendpoint.php';
 
-echo 'hello';
+define("CAMBRIDGE_URL",     'http://data.lib.cam.ac.uk/endpoint.php');
+
+
+
+echo '<h2>hello</h2>';
 
 $cambridgesparql = new Sparqlendpoint;
-$cambridgesparql->initalise();
+$cambridgesparql->initalise(CAMBRIDGE_URL);
 
 
 
@@ -33,7 +37,7 @@ if ($rows = $cambridgesparql->query($q)) {
   }
 }
 
-echo $r ? '<ul>' . $r . '</ul>' : 'no named persons found';
+echo $r ? '<ul>' . $r . '</ul>' : 'no stuff found';
 
 echo $rows;
 ?>

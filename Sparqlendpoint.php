@@ -18,10 +18,10 @@ class Sparqlendpoint {
 
 
     
-    public function initalise () {
+    public function initalise ($endpoint) {
         include_once("arc2/ARC2.php");
         
-        $this->config['remote_store_endpoint'] = 'http://data.lib.cam.ac.uk/endpoint.php';
+        $this->config['remote_store_endpoint'] = $endpoint;
         
         
         /* instantiation */
