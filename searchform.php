@@ -23,4 +23,7 @@
       <input type="hidden" name="task" value="search">
 
       </form>
+      </div>
+</div>
+
  

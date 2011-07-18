@@ -7,34 +7,45 @@
 
 include_once 'Sparqlendpoint.php';
 
-define("CAMBRIDGE_URL",     'http://data.lib.cam.ac.uk/endpoint.php');
-
 $cambridgesparql = new Sparqlendpoint;
 $cambridgesparql->initalise(CAMBRIDGE_URL);
 
 $searchphase = $_GET["q"];
 
 
-/* list names */
+/*  */
 $sparqlq = '
  
-  SELECT * WHERE { 
-	?pubid \'http://www.w3.org/2000/01/rdf-schema#label\' \'' .
-    $searchphase . '\'  .
+  SELECT ?pubid ?pubname WHERE { 
+	?pubid \'http://www.w3.org/2000/01/rdf-schema#label\' ?pubname .
+        FILTER (regex(?pubname, "' . $searchphase . '")) .
+        
+    
 
 	 }
 ';
 $r = '';
 if ($rows = $cambridgesparql->query($sparqlq)) {
   foreach ($rows as $row) {
-    $r .= '<li>' . $row['pubid'] . '</li>';
+    $r .= '<li>' . $row['pubid'] . 
+      ' <a href="?task=publisherdetails&pubid=' . $row['pubid'] . '">' 
+      . $row['pubname'] . '</a></li>';
   }
 }
 
 
 //output
+$output .= "<h2>Search for $searchphase</h2>\n";
+if ($r) {
+    $output .= '<ul>' . $r . '</ul>';
+}
+else {
+    $output .= 'no stuff found' . $sparqlq;
+}
 
-echo $r ? '<ul>' . $r . '</ul>' : 'no stuff found' . $sparqlq;
+
+echo $output;
+
 
 
 ?>
