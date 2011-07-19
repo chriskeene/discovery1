@@ -15,14 +15,13 @@ $searchphase = $_GET["q"];
 
 /*  */
 $sparqlq = '
- 
-  SELECT ?pubid ?pubname WHERE { 
-	?pubid \'http://www.w3.org/2000/01/rdf-schema#label\' ?pubname .
-        FILTER (regex(?pubname, "' . $searchphase . '")) .
-        
-    
+SELECT ?pubid ?pubname WHERE { 
+	?pubid <http://www.w3.org/2000/01/rdf-schema#label\> ?pubname .
+        FILTER (regex(?pubname, "' . $searchphase . '")) .        
+}
 
-	 }
+
+
 ';
 $r = '';
 if ($rows = $cambridgesparql->query($sparqlq)) {
@@ -40,12 +39,12 @@ if ($r) {
     $output .= '<ul>' . $r . '</ul>';
 }
 else {
-    $output .= 'no stuff found' . $sparqlq;
+    $output .= 'no stuff found <pre>' . $r . $sparqlq .'</pre>';
 }
 
 
 echo $output;
 
-
+// ?b \'http://purl.org/dc/terms/publisher\' ?pubid .
 
 ?>

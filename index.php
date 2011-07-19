@@ -20,7 +20,7 @@ switch ($task) {
         include 'search.php';
         break;
     case "publisherdetails":
-        include 'two.php';
+        include 'publisherdetails.php';
         break;
     default:
         echo "default";
