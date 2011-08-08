@@ -30,7 +30,7 @@ class Sparqlendpoint {
         /* LOAD will call the Web reader, which will call the
         format detector, which in turn triggers the inclusion of an
         appropriate parser, etc. until the triples end up in the store. */
-        $this->store->query('LOAD <http://data.lib.cam.ac.uk/endpoint.php?>');
+        $this->store->query('LOAD <http://example.com/home.html>');
 
         
     }
